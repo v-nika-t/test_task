@@ -1,12 +1,23 @@
 ﻿
-string[] family = {"mother", "father", "son", "daughter", "dog", "cat"};
+string [] GetArray(bool askUser = false) {
+    if(!askUser) {
+        string[] family = {"mother", "father", "son", "daughter", "dog", "cat"};
+        return family;
+    } else {
+        Console.WriteLine("Введите через запятую слова");
+        string [] newWords = Console.ReadLine().Split(",");
+        return newWords;
+    }
+    
+
+}
 
 string [] GetElementsByParams(string [] array, int countSymbols = 4) {
        string[] changedArray = new string[array.Length];
        int k = 0;
-        for(int i = 0; i < family.Length; i++) {
+        for(int i = 0; i < array.Length; i++) {
             if(array[i].Length < countSymbols) {
-                changedArray[k++] = family[i];  
+                changedArray[k++] = array[i];  
             }
         }
     return changedArray;
@@ -19,4 +30,8 @@ void ShowArray(string [] array) {
         }
 }
 
-ShowArray(GetElementsByParams(family));
+ShowArray(GetElementsByParams(GetArray()));
+ShowArray(GetElementsByParams(GetArray(true)));
+
+
+
